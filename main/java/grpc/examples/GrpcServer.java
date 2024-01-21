@@ -1,4 +1,4 @@
-package grpc;
+package grpc.examples;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;

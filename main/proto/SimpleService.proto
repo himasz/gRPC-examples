@@ -12,7 +12,7 @@ service SimpleService {
 }
 
 message HelloRequest {
-  optional string  name = 1;
+  optional string  message = 1;
 }
 
 message HelloResponse {
