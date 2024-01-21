@@ -4,20 +4,11 @@ option java_package = "service.simple";
 
 // The greeter service definition.
 service SimpleService {
-  rpc hello (HelloRequest) returns (stream HelloResponse);
-  rpc argsExample (ArgsExampleRequest) returns (stream ArgsExampleResponse);
-  rpc killTheBuffer (KillTheBufferRequest) returns (stream KillTheBufferResponse);
+  rpc helloV1 (HelloRequest) returns (HelloResponse);
+  rpc helloV2 (HelloRequest) returns (stream HelloResponse);
+  rpc helloV3 (stream HelloRequest) returns (HelloResponse);
+  rpc helloV4 (stream HelloRequest) returns (stream HelloResponse);
 
-}
-
-message ArgsExampleRequest {
-  string  x = 1;
-  int32  y = 2;
-  string  message = 3;
-}
-
-message ArgsExampleResponse{
-  string  response = 1;
 }
 
 message HelloRequest {
@@ -27,13 +18,4 @@ message HelloRequest {
 message HelloResponse {
   // The response message containing the greetings
   optional string message = 1;
-}
-
-
-message KillTheBufferRequest {
-  optional string  message = 1;
-}
-
-message KillTheBufferResponse{
-  int32  count = 1;
 }
