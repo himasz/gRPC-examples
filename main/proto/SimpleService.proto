@@ -1,0 +1,39 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "simpleservice.curalie";
+
+// The greeter service definition.
+service SimpleService {
+  rpc hello (HelloRequest) returns (stream HelloResponse);
+  rpc argsExample (ArgsExampleRequest) returns (stream ArgsExampleResponse);
+  rpc killTheBuffer (KillTheBufferRequest) returns (stream KillTheBufferResponse);
+
+}
+
+message ArgsExampleRequest {
+  string  x = 1;
+  int32  y = 2;
+  string  message = 3;
+}
+
+message ArgsExampleResponse{
+  string  response = 1;
+}
+
+message HelloRequest {
+  optional string  name = 1;
+}
+
+message HelloResponse {
+  // The response message containing the greetings
+  optional string message = 1;
+}
+
+
+message KillTheBufferRequest {
+  optional string  message = 1;
+}
+
+message KillTheBufferResponse{
+  int32  count = 1;
+}
