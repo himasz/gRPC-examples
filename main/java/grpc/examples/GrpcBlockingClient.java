@@ -17,12 +17,16 @@ public class GrpcBlockingClient {
         ManagedChannelBuilder<?> channelBuilder = ManagedChannelBuilder
                 .forAddress("localhost", 3456)
                 .usePlaintext();
-        ManagedChannel channel = channelBuilder.build();
-        SimpleServiceGrpc.SimpleServiceBlockingStub simpleServiceBlockingStub = SimpleServiceGrpc.newBlockingStub(channel);
-        System.out.println(simpleServiceBlockingStub.helloV1(HelloRequest.newBuilder().setMessage("Ebrahim").build()));
+        SimpleServiceGrpc.SimpleServiceBlockingStub simpleServiceBlockingStub =
+                SimpleServiceGrpc.newBlockingStub(channelBuilder.build());
 
-        Iterator<HelloResponse> iterator
-                = simpleServiceBlockingStub.helloV2(HelloRequest.newBuilder().setMessage("Ebrahim").build());
+        HelloResponse response =
+                simpleServiceBlockingStub.helloV1(HelloRequest.newBuilder().setMessage("Ebrahim").build());
+
+        System.out.println(response);
+
+        Iterator<HelloResponse> iterator =
+                simpleServiceBlockingStub.helloV2(HelloRequest.newBuilder().setMessage("Ebrahim").build());
         while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
