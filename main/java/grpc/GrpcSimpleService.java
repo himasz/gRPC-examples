@@ -1,8 +1,8 @@
 package grpc;
 
 import io.grpc.stub.StreamObserver;
-import simpleservice.curalie.*;
-import simpleservice.curalie.SimpleServiceGrpc.SimpleServiceImplBase;
+import service.simple.*;
+import service.simple.SimpleServiceGrpc.SimpleServiceImplBase;
 
 public class GrpcSimpleService extends SimpleServiceImplBase {
     @Override

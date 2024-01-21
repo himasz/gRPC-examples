@@ -3,8 +3,8 @@ package grpc;
 import io.grpc.ManagedChannel;
 import io.grpc.ManagedChannelBuilder;
 import io.grpc.stub.StreamObserver;
-import simpleservice.curalie.*;
-import simpleservice.curalie.SimpleServiceGrpc.SimpleServiceStub;
+import service.simple.*;
+import service.simple.SimpleServiceGrpc.SimpleServiceStub;
 
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;

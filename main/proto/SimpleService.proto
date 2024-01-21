@@ -1,6 +1,6 @@
 syntax = "proto3";
 option java_multiple_files = true;
-option java_package = "simpleservice.curalie";
+option java_package = "service.simple";
 
 // The greeter service definition.
 service SimpleService {
