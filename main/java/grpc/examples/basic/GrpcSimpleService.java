@@ -1,4 +1,4 @@
-package grpc.examples;
+package grpc.examples.basic;
 
 import io.grpc.stub.StreamObserver;
 import service.simple.*;
