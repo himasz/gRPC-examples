@@ -77,7 +77,7 @@ public class BookstoreServiceImpl extends BookstoreServiceGrpc.BookstoreServiceI
 
         @Override
         public StreamObserver<SubmitBookReviewRequest> submitBookReview(StreamObserver<SubmitBookReviewResponse> responseObserver) {
-            return new StreamObserver<SubmitBookReviewRequest>() {
+            return new StreamObserver<>() {
                 @Override
                 public void onNext(SubmitBookReviewRequest request) {
                     // Process the submitted review (for simplicity, just print it)

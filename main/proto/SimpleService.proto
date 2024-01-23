@@ -2,20 +2,19 @@ syntax = "proto3";
 option java_multiple_files = true;
 option java_package = "service.simple";
 
-// The greeter service definition.
+package simpleservice;
+
 service SimpleService {
   rpc helloV1 (HelloRequest) returns (HelloResponse);
   rpc helloV2 (HelloRequest) returns (stream HelloResponse);
   rpc helloV3 (stream HelloRequest) returns (HelloResponse);
   rpc helloV4 (stream HelloRequest) returns (stream HelloResponse);
-
 }
 
 message HelloRequest {
-  optional string  message = 1;
+  string  message = 1;
 }
 
 message HelloResponse {
-  // The response message containing the greetings
-  optional string message = 1;
+  string message = 1;
 }

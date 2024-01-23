@@ -4,7 +4,7 @@ import io.grpc.stub.StreamObserver;
 import service.simple.*;
 import service.simple.SimpleServiceGrpc.SimpleServiceImplBase;
 
-public class GrpcSimpleService extends SimpleServiceImplBase {
+public class SimpleService extends SimpleServiceImplBase {
     @Override
     public void helloV1(HelloRequest request, StreamObserver<HelloResponse> responseObserver) {
         responseObserver.onNext(HelloResponse.newBuilder().setMessage("HelloV1 - Hello " + request.getMessage()).build());

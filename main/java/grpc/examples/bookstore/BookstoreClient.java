@@ -6,10 +6,12 @@ import io.grpc.stub.StreamObserver;
 import service.bookstore.*;
 
 import java.util.Iterator;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.TimeUnit;
 
 public class BookstoreClient {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         ManagedChannel channel = ManagedChannelBuilder.forAddress("localhost", 1234)
                 .usePlaintext() // Use plaintext communication for simplicity (insecure, for demo purposes)
                 .build();
@@ -45,34 +47,38 @@ public class BookstoreClient {
 
         // 2.4 SubmitBookReview
         System.out.println("\nSubmitBookReview:");
+        BookstoreServiceGrpc.BookstoreServiceStub serviceStub = BookstoreServiceGrpc.newStub(channel);
+//        CountDownLatch latch = new CountDownLatch(1);
+        StreamObserver<SubmitBookReviewRequest> requestStreamObserver =
+                serviceStub.submitBookReview(new StreamObserver<>() {
+                    @Override
+                    public void onNext(SubmitBookReviewResponse response) {
+                        System.out.println("Response: " + response.getMessage());
+                    }
 
-//        StreamObserver<SubmitBookReviewRequest> requestStreamObserver = blockingStub.submitBookReview(new StreamObserver<SubmitBookReviewResponse>() {
-//            @Override
-//            public void onNext(SubmitBookReviewResponse response) {
-//                System.out.println("Response: " + response.getMessage());
-//            }
-//
-//            @Override
-//            public void onError(Throwable t) {
-//                System.err.println("Error in submitting book review: " + t.getMessage());
-//            }
-//
-//            @Override
-//            public void onCompleted() {
-//                // This will be called when the server completes the RPC call
-//                System.out.println("SubmitBookReview completed");
-//            }
-//        });
-//
-//        // Send a sample review
-//        requestStreamObserver.onNext(SubmitBookReviewRequest.newBuilder()
-//                .setBookId("1")
-//                .setReviewerName("John")
-//                .setReviewText("Enjoyed reading it!")
-//                .build());
-//
-//        // Complete the RPC call
-//        requestStreamObserver.onCompleted();
+                    @Override
+                    public void onError(Throwable t) {
+                        System.err.println("Error in submitting book review: " + t.getMessage());
+                    }
+
+                    @Override
+                    public void onCompleted() {
+                        // This will be called when the server completes the RPC call
+                        System.out.println("SubmitBookReview completed");
+//                        latch.countDown();
+                    }
+                });
+
+        // Send a sample review
+        requestStreamObserver.onNext(SubmitBookReviewRequest.newBuilder()
+                .setBookId("1")
+                .setReviewerName("John")
+                .setReviewText("Enjoyed reading it!")
+                .build());
+
+        // Complete the RPC call
+        requestStreamObserver.onCompleted();
+//        latch.await(10, TimeUnit.SECONDS);
 
         // Wait for a moment to see the asynchronous completion message
         try {

@@ -8,7 +8,7 @@ import java.io.IOException;
 public class GrpcServer {
     public static void main(String[] args) throws IOException, InterruptedException {
         Server server = ServerBuilder.forPort(3456)
-                .addService(new GrpcSimpleService())
+                .addService(new SimpleService())
                 .build();
         server.start();
         System.out.println("Successfully Started the Server");

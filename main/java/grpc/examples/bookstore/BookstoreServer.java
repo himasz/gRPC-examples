@@ -2,8 +2,6 @@ package grpc.examples.bookstore;
 
 import io.grpc.Server;
 import io.grpc.ServerBuilder;
-import io.grpc.stub.StreamObserver;
-import service.bookstore.*;
 
 public class BookstoreServer {
 
