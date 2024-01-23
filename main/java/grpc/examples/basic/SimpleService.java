@@ -29,6 +29,7 @@ public class SimpleService extends SimpleServiceImplBase {
             public void onNext(HelloRequest request) {
                 //We could add some calculations here like averages, std and other things!
                 clientMessages.append(request.getMessage());
+                clientMessages.append(" ");
             }
 
             @Override
@@ -38,7 +39,7 @@ public class SimpleService extends SimpleServiceImplBase {
 
             @Override
             public void onCompleted() {
-                responseObserver.onNext(HelloResponse.newBuilder().setMessage(clientMessages.toString()).build());
+                responseObserver.onNext(HelloResponse.newBuilder().setMessage("Hello " + clientMessages).build());
                 responseObserver.onCompleted();
             }
         };
