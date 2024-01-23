@@ -16,7 +16,7 @@ const request = { message: 'ebrahim' };
 
 client.helloV1(request, (error, response) => {
     if (!error) {
-        console.log('Result:', response.result);
+        console.log('Result:', response.message);
     } else {
         console.error('Error:', error);
     }

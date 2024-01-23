@@ -41,16 +41,16 @@ public class BookstoreServiceImpl extends BookstoreServiceGrpc.BookstoreServiceI
         }
 
         @Override
-        public void getBookDetails(GetBookDetailsRequest request, StreamObserver<BookDetailsResponse> responseObserver) {
+        public void getBookDetails(GetBookDetailsRequest request, StreamObserver<GetBookDetailsResponse> responseObserver) {
             if ("1".equals(request.getBookId())) {
-                BookDetailsResponse response = BookDetailsResponse.newBuilder()
+                GetBookDetailsResponse response = GetBookDetailsResponse.newBuilder()
                         .setTitle(book1.getTitle())
                         .setAuthor(book1.getAuthor())
                         .setDescription(book1.getDescription())
                         .build();
                 responseObserver.onNext(response);
             } else if ("2".equals(request.getBookId())) {
-                BookDetailsResponse response = BookDetailsResponse.newBuilder()
+                GetBookDetailsResponse response = GetBookDetailsResponse.newBuilder()
                         .setTitle(book2.getTitle())
                         .setAuthor(book2.getAuthor())
                         .setDescription(book2.getDescription())

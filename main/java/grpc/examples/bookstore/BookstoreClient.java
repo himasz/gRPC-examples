@@ -31,7 +31,7 @@ public class BookstoreClient {
 
         // 2.2 GetBookDetails
         System.out.println("\nGetBookDetails:");
-        BookDetailsResponse getBookDetailsResponse = blockingStub.getBookDetails(GetBookDetailsRequest.newBuilder().setBookId("1").build());
+        GetBookDetailsResponse getBookDetailsResponse = blockingStub.getBookDetails(GetBookDetailsRequest.newBuilder().setBookId("1").build());
         System.out.println("Title: " + getBookDetailsResponse.getTitle() +
                 ", Author: " + getBookDetailsResponse.getAuthor() +
                 ", Description: " + getBookDetailsResponse.getDescription());
