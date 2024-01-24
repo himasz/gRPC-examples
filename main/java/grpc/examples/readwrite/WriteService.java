@@ -30,7 +30,7 @@ public class WriteService extends WriteServiceGrpc.WriteServiceImplBase {
             public void onNext(WriteDataRequest request) {
                 String fileName = "main/resources/data.csv";
                 try (CSVWriter csvWriter = new CSVWriter(new FileWriter(fileName, true))) {
-                    if (isCsvFileEmpty(fileName) || !isHeadersAdded) {
+                    if (isCsvFileEmpty(fileName) && !isHeadersAdded) {
                         String[] header = {"timestamp", "energy"};
                         csvWriter.writeNext(header);
                         isHeadersAdded = true;

@@ -17,7 +17,7 @@ import java.util.concurrent.CountDownLatch;
 
 import static grpc.examples.readwrite.Application.LB_PORT;
 
-public class client {
+public class Client {
 
     public static final String SPLITTER = ":";
     public static final String READ = "read";
