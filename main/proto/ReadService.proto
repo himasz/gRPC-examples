@@ -1,0 +1,16 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "service.read";
+
+
+service ReadService {
+  rpc read (ReadRequest) returns (ReadResponse);
+}
+
+message ReadRequest {
+  int64  timestamp = 1;
+}
+message ReadResponse {
+  int64  timestamp = 1;
+  double energy = 2;
+}

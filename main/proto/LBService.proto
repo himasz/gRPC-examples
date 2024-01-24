@@ -1,0 +1,15 @@
+syntax = "proto3";
+option java_multiple_files = true;
+option java_package = "service.lb";
+
+
+service LBService {
+  rpc freeService (FreeServiceRequest) returns (FreeServiceResponse);
+}
+
+message FreeServiceRequest {
+  string service = 1;
+}
+message FreeServiceResponse {
+  string response = 1;
+}
